@@ -3,7 +3,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.Thread.State;
 
+/**
+ * Testing JavaDoc.
+ */
 public class ExecutableMain {
+
 	public static void main(String[] args) {
 		System.out.printf("Minimum Priority: %s\n",
                 Thread.MIN_PRIORITY);
