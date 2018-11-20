@@ -34,37 +34,39 @@ public class ExecutableMain {
 		try(FileWriter file = new FileWriter(".\\data\\log.txt");
 		     PrintWriter pw = new PrintWriter(file);) {
 			for (int i = 0; i < 10; i++) {
-        pw.println("Main : Status of Thread " + i + " : " +
+        		pw.println("Main : Status of Thread " + i + " : " +
                     threads[i].getState());
-        status[i] = threads[i].getState();
+        			status[i] = threads[i].getState();
 			}
 			
 			for (int i = 0; i < 10; i++) {
-        threads[i].start();
-      } 
+        		threads[i].start();
+      		}
 			
-			 boolean finish = false;
-       while (!finish) {
-         for (int i = 0; i < 10; i++) {
-           if (threads[i].getState() != status[i]) {
-             writeThreadInfo(pw, threads[i], status[i]);
-             status[i] = threads[i].getState();
-           }
-         }
-         finish = true;
-         for (int i = 0; i < 10; i++) {
-           finish = finish && (threads[i].getState() == State.TERMINATED);
-         	} 
-         }
-     } catch (IOException e) {
-       e.printStackTrace();
-     } 
+      		boolean finish = false;
+
+			while (!finish) {
+				for (int i = 0; i < 10; i++) {
+           			if (threads[i].getState() != status[i]) {
+             			writeThreadInfo(pw, threads[i], status[i]);
+            		 	status[i] = threads[i].getState();
+          			 }
+				}
+         	finish = true;
+
+			for (int i = 0; i < 10; i++) {
+					finish = finish && (threads[i].getState() == State.TERMINATED);
+				}
+			}
+     	} catch (IOException e) {
+       		e.printStackTrace();
+     	}
 	}
+	
 
 	private static void writeThreadInfo(PrintWriter pw, Thread thread,
       State state) {
-		pw.printf("Main : Id %d - %s\n", thread.getId(),
-				thread.getName());
+		pw.printf("Main : Id %d - %s\n", thread.getId(), thread.getName());
 		pw.printf("Main : Priority: %d\n", thread.getPriority());
 		pw.printf("Main : Old State: %s\n", state);
 		pw.printf("Main : New State: %s\n", thread.getState());
