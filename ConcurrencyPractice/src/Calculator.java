@@ -1,3 +1,6 @@
+/**
+ * Testing javadoc and commit and push.
+ */
 public class Calculator implements Runnable {
 
 	@Override
